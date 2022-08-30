@@ -58,4 +58,4 @@ do{
    console.log(hobbies);
 }while(hobbies.length != cantidad)
 alert("los hobbies que eligio son " + hobbies);
-/* mi idea es agregar un checkbox y bincularlo con el js, intente varias veces y no lo logre asi que lo hice mediante prompt */
+/* mi idea es agregar un checkbox y bincularlo con el js, intente varias veces y no lo logre asi que lo hice mediante prompt. */
