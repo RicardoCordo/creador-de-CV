@@ -19,7 +19,6 @@ form.addEventListener('submit', (event) => {
     console.log("Trabajos ", trabajos.value)
 
 
-
     validarEmail(email.value)
     imprimirValoresFormulario(form)
     validarDireccion(direccion.value)
@@ -50,8 +49,13 @@ function cantidadTrabajos(trabajos){
     }
 
 }
-/* pense en agregar un while a trabajos pero la verdad no supe bien como linkearlo para que me vuelva al formulario a pedir el dato, se que si no recurriera al formulario y lo pidiera por prompt seria algo asi:
-    let trabajos = prompt ("ingrese sus trabajos")
-    while(trabajos != "ESC")
-    alert("puede ingresar trabajos hasta que escriba "ESC" ")
-*/
+
+const hobbies = [];
+let cantidad = 3;
+do{
+   let entrada = prompt("Ingresar 3 hobbies");
+   hobbies.push(entrada);
+   console.log(hobbies);
+}while(hobbies.length != cantidad)
+alert("los hobbies que eligio son " + hobbies);
+/* mi idea es agregar un checkbox y bincularlo con el js, intente varias veces y no lo logre asi que lo hice mediante prompt. */
