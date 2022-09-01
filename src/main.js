@@ -9,53 +9,93 @@ form.addEventListener('submit', (event) => {
     const email = form.elements['email'];
     console.log("Email ",email.value)
 
-    const password = form.elements['password'];
-    console.log("Password ", password.value)
+    const edad = form.elements['edad'];
+    console.log("Edad ", edad.value)
 
     const direccion = form.elements['direccion'];
     console.log("Direccion ", direccion.value)
 
-    const trabajos = form.elements['trabajos'];
-    console.log("Trabajos ", trabajos.value)
+    const trabajo = form.elements['trabajo'];
+    console.log("Trabajo actual ", trabajo.value)
 
 
     validarEmail(email.value)
-    imprimirValoresFormulario(form)
+    validarEdad (edad.value)
     validarDireccion(direccion.value)
-    cantidadTrabajos (trabajos.value)
+    validarTrabajo (trabajo.value)
+    imprimirValoresFormulario(form)
 });
 function validarEmail(email){
     if(email === "")
     alert ("Ingrese email nuevamente")
 }
+function validarEdad(edad){
+    if(edad === "")
+    alert ("Ingrese edad nuevamente")
+}
 
-function validarDireccion(email){
-    if(email === "")
-    alert ("Ingrese direccion nuevamente")
+function validarDireccion(direccion){
+    if(direccion=== "")
+    alert ("Ingrese dirección nuevamente")
+}
+
+function validarTrabajo(trabajo){
+    if(trabajo ===""){
+        alert( "Ingrese algun trabajo o desocupado")
+    }
+
 }
 
 function imprimirValoresFormulario(formulario){
     for (let i = 0; i < 4; i++) {
-        alert("usted ingreso el siguiente dato "+formulario.elements[i].value);
-        
-    }
-// el numero 4 es por al numero de campos que agregue(email, contraseña, dirreccion y trabajos)
+        alert("usted ingreso la siguiente informacion personal "+formulario.elements[i].value);
     
-}
-
-function cantidadTrabajos(trabajos){
-    if(trabajos ===""){
-        alert( "Ingrese algun trabajo")
     }
-
 }
 
-const hobbies = [];
-let cantidad = 3;
-do{
-   let entrada = prompt("Ingresar 3 hobbies");
-   hobbies.push(entrada);
-   console.log(hobbies);
-}while(hobbies.length != cantidad)
-alert("los hobbies que eligio son " + hobbies);
-/* mi idea es agregar un checkbox y bincularlo con el js, intente varias veces y no lo logre asi que lo hice mediante prompt. */
+const CLAVE_LOCALSTORAGE = "lista_hobbies";
+document.addEventListener("DOMContentLoaded", () => {
+	let hobbies = []; 
+	const $contenedorHobbies = document.querySelector("#contenedorHobbies"),
+		$btnGuardarHobbie = document.querySelector("#btnAgregarHobbie"),
+		$inputNuevoHobbie = document.querySelector("#inputNuevoHobbie");
+
+	$btnGuardarHobbie.onclick = () => {
+		const hobbie = {hobbie: $inputNuevoHobbie.value};
+		if (!hobbie) {
+			return;
+		}
+		$inputNuevoHobbie.value = "";
+
+        guardarHobbieEnAlmacenamiento(hobbie)
+    };
+
+
+        const $li = document.createElement("li");
+        $li.textContent = hobbie.hobbie
+        $contenedorHobbies.appendChild($li);
+
+		guardarHobbieEnAlmacenamiento();
+	
+	const obtenerHobbiesDeAlmacenamiento = () => {
+		const posibleLista = JSON.parse(localStorage.getItem(CLAVE_LOCALSTORAGE));
+		if (posibleLista) {
+			return posibleLista;
+		} else {
+			return [];
+		}
+	};
+
+	const guardarHobbieEnAlmacenamiento = (hobbie) => {
+        let hobbies = obtenerHobbiesDeAlmacenamiento();
+        hobbies.push(hobbie);
+		localStorage.setItem(CLAVE_LOCALSTORAGE, JSON.stringify(hobbies));
+	};
+    
+
+});
+
+
+
+
+
