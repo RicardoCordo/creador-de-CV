@@ -46,12 +46,7 @@ function validarTrabajo(trabajo){
 
 }
 
-function imprimirValoresFormulario(formulario){
-    for (let i = 0; i < 4; i++) {
-        alert("usted ingreso la siguiente informacion personal "+formulario.elements[i].value);
-    
-    }
-}
+
 
 const CLAVE_LOCALSTORAGE = "lista_hobbies";
 document.addEventListener("DOMContentLoaded", () => {
@@ -70,14 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         guardarHobbieEnAlmacenamiento(hobbie)
     };
 
-
-        const $li = document.createElement("li");
-        $li.textContent = hobbie.hobbie
-        $contenedorHobbies.appendChild($li);
-
-		guardarHobbieEnAlmacenamiento();
-	
-	const obtenerHobbiesDeAlmacenamiento = () => {
+    const obtenerHobbiesDeAlmacenamiento = () => {
 		const posibleLista = JSON.parse(localStorage.getItem(CLAVE_LOCALSTORAGE));
 		if (posibleLista) {
 			return posibleLista;
@@ -86,14 +74,64 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	};
 
-	const guardarHobbieEnAlmacenamiento = (hobbie) => {
+    const guardarHobbieEnAlmacenamiento = (hobbie) => {
         let hobbies = obtenerHobbiesDeAlmacenamiento();
         hobbies.push(hobbie);
 		localStorage.setItem(CLAVE_LOCALSTORAGE, JSON.stringify(hobbies));
 	};
-    
 
-});
+/* busque pero no encontre porque se agrega el hobbie en el storage pero no se agrega a la lista, creo que es porque donde dice hobbie.hobbie deberia declarar el indice pero no supe bien como realizarlo para que se agreguen a la lista del html a medida que se agreguen los hobbies al storage */
+        const $li = document.createElement("li");
+        $li.textContent = hobbie.hobbie;
+        $contenedorHobbies.appendChild($li);
+
+		guardarHobbieEnAlmacenamiento();
+	
+    });
+
+// falta agregar estilos para que se vea la zona del drag pero igualmente funciona si se le arrastra encima
+const $fileInput = document.getElementById('image')
+const $dropZone = document.getElementById('result-image')
+const $img = document.getElementById('img-result')
+
+$dropZone.addEventListener('click', () => $fileInput.click())
+
+$dropZone.addEventListener('dragover', (e) => {
+	e.preventDefault()
+
+	$dropZone.classList.add('form-file__result--active')
+})
+
+$dropZone.addEventListener('dragleave', (e) => {
+	e.preventDefault()
+
+	$dropZone.classList.remove('form-file__result--active')
+})
+
+const uploadImage = (file) => {
+	const fileReader = new FileReader()
+	fileReader.readAsDataURL(file)
+
+	fileReader.addEventListener('load', (e) => {
+		$img.setAttribute('src', e.target.result)
+	})
+}
+
+$dropZone.addEventListener('drop', (e) => {
+	e.preventDefault()
+
+	$fileInput.files = e.dataTransfer.files
+	const file = $fileInput.files[0]
+
+	uploadImage(file)
+})
+
+$fileInput.addEventListener('change', (e) => {
+	const file = e.target.files[0]
+
+	uploadImage(file)
+})
+
 
 
 

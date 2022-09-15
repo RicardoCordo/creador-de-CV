@@ -12,7 +12,20 @@
         <h1>CREA TU CV</h1>
     </section>
     <section>
-      <h2>Datos Personales</h2>
+      <h2 class="main__form--title">Elija su imagen de Perfil</h2>
+  
+        <div class="form-file">
+          <div class="form-file__action">
+            <label for="image" class="title"></label>
+            <input type="file" name="image" id="image" />
+          </div>
+          <div class="form-file__result" id="result-image">
+            <img id="img-result" alt="" />
+          </div>
+        </div>
+    </section>
+    <section>
+      <h3>Datos Personales</h3>
       <form id="formPrueba">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -32,7 +45,7 @@
             <input type="trabajo" class="form-control" id="trabajo">
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Agregar</button>
       </form>
     </section>
     <section>
@@ -43,7 +56,7 @@
       <ul id="contenedorHobbies"></ul>
     </section>
     <script src="./src/main.js"></script>
+    
 </body>
 </html>
 
-<!-- el html va a tener otro formato-->
