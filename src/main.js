@@ -1,51 +1,53 @@
-// mi idea de proyecto es crear una pagina que genere Curriculum Vitae
 
 const form  = document.getElementById('formPrueba');
 
 form.addEventListener('submit', (event) => {
-    console.log("ingrese al formulario")
     event.preventDefault();
 
+	const nombre = form.elements['nombre'];
+
+	const apellido = form.elements['apellido'];
+
     const email = form.elements['email'];
-    console.log("Email ",email.value)
 
     const edad = form.elements['edad'];
-    console.log("Edad ", edad.value)
 
     const direccion = form.elements['direccion'];
-    console.log("Direccion ", direccion.value)
 
     const trabajo = form.elements['trabajo'];
-    console.log("Trabajo actual ", trabajo.value)
 
-
-    validarEmail(email.value)
-    validarEdad (edad.value)
-    validarDireccion(direccion.value)
     validarTrabajo (trabajo.value)
-    imprimirValoresFormulario(form)
+    validarDireccion(direccion.value)
+	validarEdad (edad.value)
+    validarEmail(email.value)
+    validarApellido(apellido.value)
+	validarNombre(nombre.value)
+
 });
+
+function validarNombre(nombre){
+	!nombre && swal("Ingrese su nombre");
+}
+
+function validarApellido(apellido){
+	!apellido && swal("Ingrese su apellido");
+}
+
 function validarEmail(email){
-    if(email === "")
-    alert ("Ingrese email nuevamente")
+    !email && swal("Ingrese su email");
 }
 function validarEdad(edad){
-    if(edad === "")
-    alert ("Ingrese edad nuevamente")
+    !edad && swal("Ingrese su edad");
 }
 
 function validarDireccion(direccion){
-    if(direccion=== "")
-    alert ("Ingrese dirección nuevamente")
+    !direccion && swal("Ingrese su direccion");
 }
 
 function validarTrabajo(trabajo){
-    if(trabajo ===""){
-        alert( "Ingrese algun trabajo o desocupado")
-    }
+    !trabajo && swal("Ingrese algun trabajo o Desocupado");
 
 }
-
 
 
 const CLAVE_LOCALSTORAGE = "lista_hobbies";
@@ -73,23 +75,23 @@ document.addEventListener("DOMContentLoaded", () => {
 			return [];
 		}
 	};
+	/* ¿se podria poner el siguiente operador avanzado en remplazo del condicional que esta arriba?
+    const posibleLista = JSON.parse(localStorage.getItem(CLAVE_LOCALSTORAGE)) || []*/
+
 
     const guardarHobbieEnAlmacenamiento = (hobbie) => {
         let hobbies = obtenerHobbiesDeAlmacenamiento();
         hobbies.push(hobbie);
 		localStorage.setItem(CLAVE_LOCALSTORAGE, JSON.stringify(hobbies));
-	};
 
-/* busque pero no encontre porque se agrega el hobbie en el storage pero no se agrega a la lista, creo que es porque donde dice hobbie.hobbie deberia declarar el indice pero no supe bien como realizarlo para que se agreguen a la lista del html a medida que se agreguen los hobbies al storage */
-        const $li = document.createElement("li");
+		const $li = document.createElement("li");
         $li.textContent = hobbie.hobbie;
         $contenedorHobbies.appendChild($li);
-
-		guardarHobbieEnAlmacenamiento();
+	};
 	
     });
 
-// falta agregar estilos para que se vea la zona del drag pero igualmente funciona si se le arrastra encima
+
 const $fileInput = document.getElementById('image')
 const $dropZone = document.getElementById('result-image')
 const $img = document.getElementById('img-result')
