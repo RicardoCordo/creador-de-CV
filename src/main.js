@@ -50,6 +50,7 @@ function validarTrabajo(trabajo){
 }
 
 
+
 const CLAVE_LOCALSTORAGE = "lista_hobbies";
 document.addEventListener("DOMContentLoaded", () => {
 	let hobbies = []; 
@@ -75,9 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			return [];
 		}
 	};
-	/* ¿se podria poner el siguiente operador avanzado en remplazo del condicional que esta arriba?
-    const posibleLista = JSON.parse(localStorage.getItem(CLAVE_LOCALSTORAGE)) || []*/
-
 
     const guardarHobbieEnAlmacenamiento = (hobbie) => {
         let hobbies = obtenerHobbiesDeAlmacenamiento();
@@ -133,6 +131,15 @@ $fileInput.addEventListener('change', (e) => {
 
 	uploadImage(file)
 })
+
+
+fetch('https://apis.datos.gob.ar/georef/api/provincias')
+    .then( (resp) => resp.json() )
+    .then( (data) => {
+		console.log( data.provincias)
+    })
+
+
 
 
 
