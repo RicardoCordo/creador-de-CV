@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    font-size: 1cm;
+    font-family: 'Kanit', sans-serif;
+    background-color: aqua;
+    margin: 0;
+}
+
+.estiloCv {
+    display: grid;
+    grid-template-columns: auto 2fr 2fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "img datosPersonales datosExtra"
+        "img informacionAdicional informacionAdicional"
+
+}
+
+.datosPersonales {
+    grid-area: datosPersonales;
+    background-color: grey;
+    font-size: 0.8rem;
+    font-family: 'Kanit', sans-serif;
+    font-weight: bold;
+
+}
+
+.datosExtra {
+    grid-area: datosExtra;
+    background-color: lightgrey;
+    font-size: 0.8rem;
+    font-family: 'Kanit', sans-serif;
+}
+
+.informacionAdicional {
+    grid-area: informacionAdicional;
+}
+
+img {
+    max-height: 12rem;
+    width: auto;
+}
+
+.imgEstilos {
+    grid-area: img;
+    background-color: lightgrey;
+    margin-left: 1rem;
+}
+
+.estudios {
+    background-color: rgb(125, 175, 183);
+
+}
+
+.empleoPrevio {
+    background-color: rgb(125, 175, 183);
+}

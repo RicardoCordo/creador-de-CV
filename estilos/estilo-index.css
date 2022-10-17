@@ -1,0 +1,45 @@
+* {
+    Margin: 0;
+    padding: 0;
+}
+
+header {
+    font-size: 1cm;
+    font-family: 'Kanit', sans-serif;
+    background-color: aqua;
+    margin-bottom: 0;
+}
+
+footer {
+    background-color: aqua;
+}
+
+.estiloMain {
+    margin-top: 0;
+    background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "datosPersonales"
+}
+
+
+.datosPersonales {
+    grid-area: datosPersonales;
+
+
+}
+
+.imgPerfil {
+    background-color: rgb(125, 175, 183);
+    width: 25rem;
+}
+
+#img-result {
+    max-height: 10rem;
+}
+
+#emailHelp {
+    color: black;
+}
